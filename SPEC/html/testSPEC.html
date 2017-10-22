@@ -1,0 +1,132 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      -->
+      <title>An Example to Use SPEC-Function to Generate Elastic Response Spectra</title>
+      <meta name="generator" content="MATLAB 7.8">
+      <meta name="date" content="2011-04-30">
+      <meta name="m-file" content="testSPEC"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head>
+   <body>
+      <div class="content">
+         <h1>An Example to Use SPEC-Function to Generate Elastic Response Spectra</h1>
+         <!--introduction-->
+         <p>This is a function to generate elastic response specra including Displacement Spectrum, Pseudo Acceleration Spectrum and Pseudo
+            Velocity Spectrum which are needed in "Response Spectrum Analysis" of Structures. In this function to solve "Equation of Motions"
+            for different periods, Newmark Linear Method has been used.
+         </p>
+         <!--/introduction-->
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">@ Mostafa Tazarv, Carleton University, May 2011</a></li>
+               <li><a href="#2">Expample 1</a></li>
+               <li><a href="#3">Recall SPEC.m</a></li>
+            </ul>
+         </div>
+         <h2>@ Mostafa Tazarv, Carleton University, May 2011<a name="1"></a></h2>
+         <h2>Expample 1<a name="2"></a></h2><pre class="codeinput">clc; clear <span class="string">all</span>
+load <span class="string">elcentro.dat</span>   <span class="comment">% Load Record data, First Col. is time and second col. is Acce. in g</span>
+g=9810; <span class="comment">% mm/s^2</span>
+<span class="comment">%load IWT007-1103111446-NS.txt</span>
+<span class="comment">%Ag=g*(IWT007_1103111446_NS(2:end,1));</span>
+
+Ag=g*elcentro(:,2); <span class="comment">% Acceleration Vector</span>
+dt=0.02;            <span class="comment">% Time Interval</span>
+zet=2;              <span class="comment">% Damping Ratio</span>
+endp=5;             <span class="comment">% End Period (s) of Spectra</span>
+</pre><h2>Recall SPEC.m<a name="3"></a></h2><pre class="codeinput">[T,Spa,Spv,Sd]=SPEC(dt,Ag,zet,g,endp);
+</pre><img vspace="5" hspace="5" src="testSPEC_01.png" alt=""> <img vspace="5" hspace="5" src="testSPEC_02.png" alt=""> <p class="footer"><br>
+            Published with MATLAB&reg; 7.8<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% An Example to Use SPEC-Function to Generate Elastic Response Spectra 
+% This is a function to generate elastic response specra including Displacement
+% Spectrum, Pseudo Acceleration Spectrum and Pseudo Velocity Spectrum which
+% are needed in "Response Spectrum Analysis" of Structures. In this function
+% to solve "Equation of Motions" for different periods, Newmark Linear Method 
+% has been used. 
+
+%% @ Mostafa Tazarv, Carleton University, May 2011
+
+%% Expample 1
+clc; clear all
+load elcentro.dat   % Load Record data, First Col. is time and second col. is Acce. in g
+g=9810; % mm/s^2
+%load IWT007-1103111446-NS.txt
+%Ag=g*(IWT007_1103111446_NS(2:end,1));
+
+Ag=g*elcentro(:,2); % Acceleration Vector
+dt=0.02;            % Time Interval
+zet=2;              % Damping Ratio
+endp=5;             % End Period (s) of Spectra
+
+%% Recall SPEC.m
+[T,Spa,Spv,Sd]=SPEC(dt,Ag,zet,g,endp);
+##### SOURCE END #####
+-->
+   </body>
+</html>

@@ -19,7 +19,7 @@
 FILE_DIR=$PWD
 
 sed -n '/[ ]*add[ ]*node/p' $1  >node.include
-sed 's/[a-zA-Z#(),;*]/ /g' node.include >node.4
+sed 's/[a-df-zA-Z#(),;*]/ /g' node.include >node.4
 mv node.4 node.include
 
 rm -f element.include
