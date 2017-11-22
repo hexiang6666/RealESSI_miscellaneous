@@ -22,6 +22,7 @@
 % Spv:    Elastic Pseudo Velocity Spectrum
 % Sd:     Elastic Displacement Spectrum
 
+
 function [T,Spa,Spv,Sd]=SPEC(dt,Ag,zet,g,endp)
 u=zeros(length(Ag),1);
 v=zeros(length(Ag),1);
@@ -55,6 +56,7 @@ for j=1:round(endp/dt)                          % equation of motion(Newmark lin
     Spa(j,1)=Sd(j)*(omega(j))^2/g;
     T(j+1,1)=T(j)+dt;
 end
+
 Ag(end)=[];
 T(end)=[];
 Sd(2,1)=0; Spv(1:2,1)=0;Spa(1:2,1)=max(abs(Ag))/g;
@@ -63,7 +65,7 @@ Sd(2,1)=0; Spv(1:2,1)=0;Spa(1:2,1)=max(abs(Ag))/g;
  plot(T,Sd,'LineWidth',2.)
  grid on
 xlabel('Period (sec)','FontSize',13);
-ylabel('Sd (mm)','FontSize',13);
+ylabel('Sd (m)','FontSize',13);
 title('Displacement Spectrum','FontSize',13)
 
  figure('Name','Pseudo Acceleration Spectrum','NumberTitle','off')
